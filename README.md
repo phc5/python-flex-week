@@ -2,6 +2,7 @@
 
 ## Use
 Clone repository.
+
 cd into project directory and make sure to install all modules used in this project.
 #### For Streaming
 Edit twitter.py
@@ -10,10 +11,10 @@ Edit twitter.py
 
 In project directory, python3 twitter.py.
 
+#### For Analysis and Visualization
 Export mongodb data into CSV file.
 - mongo to csv: mongoexport --host localhost --db dbname --collection name --csv --out text.csv --fields field1, field2, etc..
 
-#### For Analysis and Visualization
 Edit sentiment.py
 - change pd.read_csv to point to you CSV file.
 
