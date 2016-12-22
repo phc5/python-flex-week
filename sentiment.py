@@ -38,7 +38,7 @@ lakers1m = lakers['created_at'].resample('1t').count()
 	a line graph.
 """
 # stop = stopwords.words('english')
-# text = np['text']
+# text = lakers['text']
 # tokens = []
 # for txt in text.values:
 # 	tokens.extend([t.lower().strip(":,.") for t in txt.split()])
@@ -50,10 +50,10 @@ lakers1m = lakers['created_at'].resample('1t').count()
 
 # count = 0
 # while count < 15:
-# 	print('{} {}'.format(np.source[count], np.source.value_counts()[count]))
+# 	print('{} {}'.format(lakers.source[count], lakers.source.value_counts()[count]))
 # 	count += 1
 
-# source = nltk.FreqDist(np.source)
+# source = nltk.FreqDist(lakers.source)
 # source.plot(15)
 
 """
