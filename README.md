@@ -1,7 +1,7 @@
 # Analyzing Twitter with Python
 
 ## Important Modules used:
-	[Tweepy](http://www.tweepy.org/ "Tweepy")
+	[Tweepy](http://www.tweepy.org/)
 		- An easy-to-use Python library for accessing Twitter API.
 		- Used to have access to Twitter's data.
 	[PyMongo](https://api.mongodb.com/python/current/ "PyMongo")
