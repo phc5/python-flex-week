@@ -1,15 +1,9 @@
 import tweepy
 import sys
 import pymongo
-
-# TODO: hide api key...
-# Put API keys in an .ini file, then load the file using configparser? Add config into .gitignore
-# keys.py, keys_sample.py, .gitignore -> keys.py
 from keys import *
 
-# Create OAuth Handler instance which takes consumer key and secret.
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-# Set the access token for the OAuth instance.
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
