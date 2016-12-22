@@ -1,5 +1,28 @@
 # Analyzing Twitter with Python
 
+## Use
+Clone repository.
+cd into project directory and make sure to install all modules used in this project.
+#### For Streaming
+Edit twitter.py
+- change database name -> self.db = pymongo.MongoClient().'db name'
+- change filter 'sapi.filter(track=[words to filter separated by commas'])
+In project directory, python3 twitter.py.
+Export mongodb data into CSV file.
+- mongo to csv: mongoexport --host localhost --db dbname --collection name --csv --out text.csv --fields field1, field2, etc..
+#### For Analysis and Visualization
+Edit sentiment.py
+- change pd.read_csv to point to you CSV file.
+For tweets per minute plot:
+- jupyter notebook in terminal
+- copy and paste lines 21 - 31 along with modules into the notebook and run.
+For word frequency and source plot:
+- open jupyter notebook:
+- copy and paste lines 21 - 25 and 39- 51 along with modules.
+For sentiment analysis:
+- comment out lines 27 - 51
+- python3 sentiment.py
+
 ## Important Modules used:
 [Tweepy](http://www.tweepy.org/ "Tweepy")
 - An easy-to-use Python library for accessing Twitter API.
