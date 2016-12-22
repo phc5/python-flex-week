@@ -20,10 +20,9 @@ from textblob import TextBlob
 """
 lakers = pd.read_csv('/Users/paulchong/Desktop/Thinkful/Python/twitterAnalysis/lakers.csv')
 lakers['created_at'] = pd.to_datetime(pd.Series(lakers['created_at']))
-lakers.set_index('created_at', drop=False, ilakerslace=True)
+lakers.set_index('created_at', drop=False, inplace=True)
 lakers.index = lakers.index.tz_localize('GMT').tz_convert('US/Pacific')
 lakers1m = lakers['created_at'].resample('1t').count()
-
 
 # # Use this in jupyter to get a graph of tweets per minute
 # vincent.core.initialize_notebook()
@@ -48,11 +47,6 @@ lakers1m = lakers['created_at'].resample('1t').count()
 # print(freq_distribution.most_common(25))
 # freq_distribution.plot(25)
 
-# count = 0
-# while count < 15:
-# 	print('{} {}'.format(lakers.source[count], lakers.source.value_counts()[count]))
-# 	count += 1
-
 # source = nltk.FreqDist(lakers.source)
 # source.plot(15)
 
@@ -72,7 +66,11 @@ for tweet in text.values:
 	print(analysis.sentiment, '\n')
 	polarity.append(analysis.sentiment.polarity)
 	subjectivity.append(analysis.sentiment.subjectivity)
-print('Polarity: \n Mean: {} \n Median: {} \n Mode: {} \n Max: {} \n Min: {}'.format(statistics.mean(polarity), statistics.median(polarity), statistics.mode(polarity), max(polarity), min(polarity)))
-print('Subjectivity: \n Mean: {} \n Median: {} \n Mode: {} \n Max: {} \n Min: {}'.format(statistics.mean(subjectivity), statistics.median(subjectivity), statistics.mode(subjectivity), max(subjectivity), min(subjectivity)))
+print('Polarity: \n Mean: {} \n Median: {} \n Mode: {} \n Max: {} \n Min: {}'.format(
+	statistics.mean(polarity), statistics.median(polarity), 
+	statistics.mode(polarity), max(polarity), min(polarity)))
+print('Subjectivity: \n Mean: {} \n Median: {} \n Mode: {} \n Max: {} \n Min: {}'.format(
+	statistics.mean(subjectivity), statistics.median(subjectivity), 
+	statistics.mode(subjectivity), max(subjectivity), min(subjectivity)))
 
 
