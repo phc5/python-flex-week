@@ -1,6 +1,6 @@
 *.ipynb
 .ipynb_checkpoints
 .DS_Store
+*.csv
 __pycache__
 keys.py
-.csv
