@@ -22,7 +22,7 @@ class MyStreamListener(tweepy.StreamListener):
         super(tweepy.StreamListener, self).__init__()
         self.api = api
         # Create new database
-        self.db = pymongo.MongoClient().Warriors
+        self.db = pymongo.MongoClient().ChristmasEveEve
 
     """
         on_status() is invoked once a successful response is received from the
@@ -57,4 +57,4 @@ sapi = tweepy.streaming.Stream(auth, MyStreamListener(api))
 
     look into filter for hashtag
 """
-sapi.filter(track=['Cleveland Cavaliers', 'Cavs', 'Cavaliers'])
+sapi.filter(track=['ChristmasEveEve'])

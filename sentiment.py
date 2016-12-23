@@ -18,37 +18,37 @@ from textblob import TextBlob
 	lakers1m.mean()
 	Mongo -> CSV: mongo to csv: mongoexport --host localhost --db dbname --collection name --csv --out text.csv --fields field1, field2, field3
 """
-lakers = pd.read_csv('/Users/paulchong/Desktop/Thinkful/Python/twitterAnalysis/lakers.csv')
+lakers = pd.read_csv('/Users/paulchong/Desktop/Thinkful/Python/twitterAnalysis/nmp.csv')
 lakers['created_at'] = pd.to_datetime(pd.Series(lakers['created_at']))
 lakers.set_index('created_at', drop=False, inplace=True)
 lakers.index = lakers.index.tz_localize('GMT').tz_convert('US/Pacific')
 lakers1m = lakers['created_at'].resample('1t').count()
 
-# # Use this in jupyter to get a graph of tweets per minute
-# vincent.core.initialize_notebook()
-# area = vincent.Area(lakers1m)
-# area.colors(brew='Spectral')
-# area.display()
-# # # # # # # # # # # # # # # # # # #
+# Use this in jupyter to get a graph of tweets per minute
+vincent.core.initialize_notebook()
+area = vincent.Area(lakers1m)
+area.colors(brew='Spectral')
+area.display()
+
 
 """
 	Tokenize the tweets and filter out all stop words (which are high frequency words 
 	that are common and irrelevant). Print out top fifteen sources and plot them on 
 	a line graph.
 """
-# stop = stopwords.words('english')
-# text = lakers['text']
-# tokens = []
-# for txt in text.values:
-# 	tokens.extend([t.lower().strip(":,.") for t in txt.split()])
+stop = stopwords.words('english')
+text = lakers['text']
+tokens = []
+for txt in text.values:
+	tokens.extend([t.lower().strip(":,.") for t in txt.split()])
 
-# 	filtered_tokens = [w for w in tokens if not w in stop]
-# 	freq_distribution = nltk.FreqDist(filtered_tokens)
-# print(freq_distribution.most_common(25))
-# freq_distribution.plot(25)
+	filtered_tokens = [w for w in tokens if not w in stop]
+	freq_distribution = nltk.FreqDist(filtered_tokens)
+print(freq_distribution.most_common(25))
+freq_distribution.plot(25)
 
-# source = nltk.FreqDist(lakers.source)
-# source.plot(15)
+source = nltk.FreqDist(lakers.source)
+source.plot(15)
 
 """
 	Create a list of all text from the tweets. For each tweet, make them into a Textblob
@@ -61,9 +61,9 @@ text = lakers['text']
 polarity = []
 subjectivity = []
 for tweet in text.values:
-	print(tweet)
+	# print(tweet)
 	analysis = TextBlob(tweet)
-	print(analysis.sentiment, '\n')
+	# print(analysis.sentiment, '\n')
 	polarity.append(analysis.sentiment.polarity)
 	subjectivity.append(analysis.sentiment.subjectivity)
 print('Polarity: \n Mean: {} \n Median: {} \n Mode: {} \n Max: {} \n Min: {}'.format(
