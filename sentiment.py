@@ -12,21 +12,21 @@ from textblob import TextBlob
 	Converted MongoDB data into a CSV file. Then create a pandas dataframe from the CSV file
 	and makes the created_at the index and changes the timezone to US/Pacific.
 
-	lakers1m will be the count of tweets per minute
-	lakers1m.head()
-	lakers1m.describe(include='all')
-	lakers1m.mean()
+	keyword1m will be the count of tweets per minute
+	keyword1m.head()
+	keyword1m.describe(include='all')
+	keyword1m.mean()
 	Mongo -> CSV: mongo to csv: mongoexport --host localhost --db dbname --collection name --csv --out text.csv --fields field1, field2, field3
 """
-lakers = pd.read_csv('/Users/paulchong/Desktop/Thinkful/Python/twitterAnalysis/nmp.csv')
-lakers['created_at'] = pd.to_datetime(pd.Series(lakers['created_at']))
-lakers.set_index('created_at', drop=False, inplace=True)
-lakers.index = lakers.index.tz_localize('GMT').tz_convert('US/Pacific')
-lakers1m = lakers['created_at'].resample('1t').count()
+keyword = pd.read_csv('/Users/paulchong/Desktop/Thinkful/Python/twitterAnalysis/nmp.csv')
+keyword['created_at'] = pd.to_datetime(pd.Series(keyword['created_at']))
+keyword.set_index('created_at', drop=False, inplace=True)
+keyword.index = keyword.index.tz_localize('GMT').tz_convert('US/Pacific')
+keyword1m = keyword['created_at'].resample('1t').count()
 
 # Use this in jupyter to get a graph of tweets per minute
 vincent.core.initialize_notebook()
-area = vincent.Area(lakers1m)
+area = vincent.Area(keyword1m)
 area.colors(brew='Spectral')
 area.display()
 
@@ -37,7 +37,7 @@ area.display()
 	a line graph.
 """
 stop = stopwords.words('english')
-text = lakers['text']
+text = keyword['text']
 tokens = []
 for txt in text.values:
 	tokens.extend([t.lower().strip(":,.") for t in txt.split()])
@@ -47,7 +47,7 @@ for txt in text.values:
 print(freq_distribution.most_common(25))
 freq_distribution.plot(25)
 
-source = nltk.FreqDist(lakers.source)
+source = nltk.FreqDist(keyword.source)
 source.plot(15)
 
 """
@@ -57,7 +57,7 @@ source.plot(15)
 	Polarity measures how positive or negative the tweet is [-1.0, 1.0].
 	Subjectivity measures how much of an opinion or fact the tweet is [0.0, 1.0]
 """
-text = lakers['text']
+text = keyword['text']
 polarity = []
 subjectivity = []
 for tweet in text.values:
